@@ -21,7 +21,7 @@
     Description: Build a CLI tool that generates realistic incident tickets
     
     Technical Requirements:
-    - Create ticket class with fields: ID, Severity (Critical/High/Medium/Low), 
+    - Create ticket class with fields: ID, Severity (Critical/High/Medium/Low/None), 
       Status (Open/In Progress/Escalated/Closed), Category (Malware/Phishing/Brute Force/DLP)
     - Implement CVSS v3.1 calculator for vulnerability scoring
     - Auto-assign based on severity (Critical → T2, High → T1 Senior, Medium/Low → T1)
