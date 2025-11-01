@@ -211,3 +211,18 @@ class Ticket:
 
     def to_csv_row(self):
         return f"{self.id},{self.title},{self.category},{self.severity},{self.cvss_score},{self.assigned_team},{self.status}"
+    
+
+# TODO: Build the CLI interface
+# - Import argparse for command-line args
+# - Add main() function with:
+#   * --generate N (number of tickets to create)
+#   * --output [csv|json|both] (export format)
+#   * --file <path> (output filename)
+#   * --load <json> (load ticket templates from tickets_database.json)
+# - Create sample tickets_database.json with realistic incident scenarios
+# - Write export_to_csv() and export_to_json() functions
+# - Add if __name__ == "__main__": block to run the CLI
+# - Maybe throw in a --verbose flag for debugging
+
+# The class is done, just needs the CLI wrapper to actually use it
