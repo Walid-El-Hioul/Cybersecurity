@@ -44,11 +44,9 @@ A command-line tool for generating realistic security incident tickets with CVSS
 
 ### Setup
 
-1. Clone or download the script:
-   ```bash
-   wget https://example.com/ticket_generator.py
-   chmod +x ticket_generator.py
-   ```
+1. Quick Download
+   
+   **Download this project only:** [Click here to download](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/Walid-El-Hioul/Cybersecurity/tree/main/SOC%20T1/SOC%20Fundamentals/Projects/Python%20Ticket%20Generator)
 
 2. Initialize configuration files:
    ```bash
