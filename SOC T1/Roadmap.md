@@ -8,7 +8,7 @@
 
 - [x] SOC tier structure (T1/T2/T3 responsibilities)
 - [x] Security incident lifecycle phases
-- [ ] Ticketing system workflow and fields
+- [x] Ticketing system workflow and fields
 - [ ] Escalation procedures and criteria
 - [ ] Documentation standards and chain of custody
 - [ ] Basic KPIs (MTTD, MTTR)

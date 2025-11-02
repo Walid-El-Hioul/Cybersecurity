@@ -1,16 +1,26 @@
 severity_levels:
-  - name: Critical
-    min_score: 9.0
-    max_score: 10.0
-  - name: High
-    min_score: 7.0
-    max_score: 8.9
-  - name: Medium
-    min_score: 4.0
-    max_score: 6.9
-  - name: Low
-    min_score: 0.1
-    max_score: 3.9
-  - name: None
-    min_score: 0.0
-    max_score: 0.0
+- escalation: Immediate
+  max_score: 10.0
+  min_score: 9.0
+  name: Critical
+  sla_response: 15 minutes
+- escalation: Within 2 hours
+  max_score: 8.9
+  min_score: 7.0
+  name: High
+  sla_response: 1 hour
+- escalation: If unresolved in 24h
+  max_score: 6.9
+  min_score: 4.0
+  name: Medium
+  sla_response: 4 hours
+- escalation: If unresolved in 72h
+  max_score: 3.9
+  min_score: 0.1
+  name: Low
+  sla_response: 24 hours
+- escalation: Not applicable
+  max_score: 0.0
+  min_score: 0.0
+  name: None
+  sla_response: Best effort
