@@ -36,7 +36,6 @@ import random
 from pathlib import Path
 
 
-# ANSI color codes for terminal output
 class Colors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -48,7 +47,6 @@ class Colors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
     
-    # Additional colors for variety
     RED = '\033[91m'
     GREEN = '\033[92m'
     YELLOW = '\033[93m'
