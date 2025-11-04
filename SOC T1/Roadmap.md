@@ -15,7 +15,7 @@
 
 #### 🛠️ **Mini-Projects Checklist**
 
-- [ ] **Python Ticket Generator** ⭐ PRIMARY
+- [x] **Python Ticket Generator** ⭐ PRIMARY
     
     ```
     Description: Build a CLI tool that generates realistic incident tickets
