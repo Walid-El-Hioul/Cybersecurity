@@ -1,89 +1,156 @@
-## SOC Alert Handling Workflow
-
-1. **Alert/Event**
-2. **Tier 1 (T1) Triage & Initial Investigation**
-3. **If False Positive / True Positive**
-   - **False Positive:** Close the alert and document findings.
-   - **True Positive:** Proceed to escalation.
-4. **Escalation to Tier 2 (T2)**
-5. **Deep Investigation & Containment**
-6. **If False Positive / True Positive**
-   - **False Positive:** Close the case after validation.
-   - **True Positive:** Escalate to Incident Handler/Manager.
-7. **Escalation to Incident Handler/Manager**
-8. **Resolution & Post-Mortem**
+Understanding the distinct roles, responsibilities, and skill sets of each SOC tier so you can perform your own job (T1) effectively, know exactly when and why to escalate an alert, and see a clear path for your career growth.
 
 ---
 
-### Your Goal for This Step
+### The SOC Alert Handling Workflow
 
-Understand the distinct roles, responsibilities, and skill sets of each SOC tier so you can:
-1.  Perform your own job (T1) effectively.
-2.  Know exactly when and why to escalate an alert.
-3.  See a clear path for your career growth.
+Before diving into tier responsibilities, here's the complete workflow that governs every alert:
 
----
+mermaid
 
-### What You Need to Learn & Do
-
-Here is a detailed breakdown of the typical responsibilities for each tier, written from the perspective of what you, as a new T1, need to know.
-
-#### 1. SOC Tier 1 (T1) - The Front Line / The Triage Engine
-
-*   **Primary Mission:** **Volume and Velocity.** To monitor, triage, and perform initial investigation on a high volume of security alerts.
-*   **Key Responsibilities:**
-    *   **Alert Acknowledgment:** Be the first set of eyes on alerts from the SIEM, EDR, IDS, and other tools.
-    *   **Initial Triage:** Quickly determine if an alert is a **false positive**, a **true positive**, or requires more info.
-    *   **Follow Playbooks:** Execute standardized procedures (playbooks) for common alert types (e.g., "Phishing Email Triage," "Brute Force Alert Investigation").
-    *   **Basic Investigation:** Gather initial facts: "Who, What, When, Where?"
-        *   Check IP/Domain reputation (VirusTotal, Threat Intel Feeds).
-        *   Look up file hashes.
-        *   Correlate a few basic logs in the SIEM.
-    *   **Decision Making:**
-        *   If False Positive: Document reasoning and close the ticket.
-        *   If True Positive or Inconclusive: **Escalate to Tier 2** with clear, concise notes.
-*   **Mindset:** **Efficiency and Process.** Your goal is to clear the queue of noise so T2 can focus on real threats. You are the filter.
-*   **What You Should Do Now:** As a T1, your entire focus in the first few months is to master this role. Practice your investigations, learn the tools, and get faster and more accurate at triage.
+```mermaid
+flowchart TD
+    A[Alert/Event Generated] --> B[Tier 1: Triage & Initial Investigation]
+    B --> C{False Positive or True Positive?}
+    C -->|False Positive| D[Close Alert & Document Findings]
+    C -->|True Positive| E[Escalate to Tier 2]
+    E --> F[T2: Deep Investigation & Containment]
+    F --> G{Confirmed Incident?}
+    G -->|False Positive| H[Close Case After Validation]
+    G -->|True Positive/Major Incident| I[Escalate to Incident Handler/Manager]
+    I --> J[Resolution & Post-Mortem]
+    J --> K[Lessons Learned & Process Improvement]
+```
 
 ---
 
-#### 2. SOC Tier 2 (T2) - The Incident Responder / The Hunter
+### 1. SOC Tier 1 (T1) - The Front Line / The Triage Engine
 
-*   **Primary Mission:** **Depth and Scope.** To perform deep-dive investigation on escalated alerts, confirm incidents, determine the scope of compromise, and begin containment.
-*   **Key Responsibilities:**
-    *   **Deep-Dive Analysis:** Investigate alerts that T1 could not resolve. This involves advanced log analysis, EDR telemetry review, and forensic artifact examination.
-    *   **Scope Expansion:** Take a confirmed malicious indicator (e.g., a bad IP) and hunt for it across the entire environment. "Is this just one machine, or fifty?"
-    *   **Incident Confirmation:** Officially declare a security incident.
-    *   **Containment:** Take initial actions to stop the threat from spreading (e.g., isolate a host from the network, disable a user account).
-    *   **Mentorship:** Often provides guidance and feedback to T1 analysts.
-*   **Mindset:** **Investigation and Correlation.** You're connecting the dots to understand the full story of an attack.
-*   **What This Means For You (as T1):**
-    *   When you escalate to T2, you are handing off a puzzle. A good handoff includes all the pieces you've already found.
-    *   **Your goal is to become a T2.** The skills in your P1 and P2 categories are what will get you there.
+**Primary Mission:** **Volume and Velocity.** Monitor, triage, and perform initial investigation on a high volume of security alerts.
+
+#### Key Responsibilities:
+
+- **Alert Acknowledgment:** Be the first set of eyes on alerts from the SIEM, EDR, IDS, and other tools.
+- **Initial Triage:** Quickly determine if an alert is a **false positive**, a **true positive**, or requires more information.
+- **Follow Playbooks:** Execute standardized procedures (playbooks) for common alert types.
+    - Example: "Phishing Email Triage Playbook" - Check sender reputation, analyze email headers, verify links/attachments
+    - Example: "Brute Force Alert Investigation" - Check if account locked, review failed login attempts, verify source IP
+- **Basic Investigation:** Gather initial facts answering: "Who, What, When, Where?"
+    - Check IP/Domain reputation (VirusTotal, AbuseIPDB, Threat Intel Feeds)
+    - Look up file hashes in threat intelligence databases
+    - Correlate basic logs in the SIEM (authentication logs, firewall logs, proxy logs)
+- **Decision Making:**
+    - If False Positive: Document reasoning clearly and close the ticket
+    - If True Positive or Inconclusive: **Escalate to Tier 2** with clear, concise notes
+
+**Mindset:** **Efficiency and Process.** Your goal is to clear the queue of noise so T2 can focus on real threats. You are the filter that protects the organization from alert fatigue.
+
+**Real-World Example:**
+
+> You receive a SIEM alert: "Multiple Failed Login Attempts - User: jsmith"
+> 
+> Your T1 Investigation:
+> 
+> 1. Check the user account - Is jsmith a real user? (Yes, Marketing Manager)
+> 2. Review the timeline - 50 failed attempts in 2 minutes from IP 203.0.113.45
+> 3. Check IP reputation - Flagged as known brute force source in threat intel
+> 4. Check if successful login occurred - Yes, after the 50th attempt from same IP
+> 5. **Decision:** TRUE POSITIVE - Escalate to T2 with evidence gathered
 
 ---
 
-#### 3. SOC Tier 3 (T3) - The Expert / The Threat Hunter
+### 2. SOC Tier 2 (T2) - The Incident Responder / The Hunter
 
-*   **Primary Mission:** **Expertise and Proactivity.** To handle the most complex incidents, conduct proactive threat hunting, and improve the SOC's overall capabilities.
-*   **Key Responsibilities:**
-    *   **Complex Incident Response:** Lead the response for major breaches (e.g., ransomware, advanced persistent threats).
-    *   **Threat Hunting:** Proactively search for hidden threats that bypassed automated detection.
-    *   **Malware Analysis:** Reverse engineer malicious software to understand its capabilities.
-    *   **Tool & Rule Development:** Create advanced detection rules for the SIEM and improve security tools.
-    *   **Strategic Improvement:** Identify gaps in the SOC's processes and technologies.
-*   **Mindset:** **Innovation and Mastery.** You are no longer just reacting; you are thinking like an adversary and building defenses against them.
+**Primary Mission:** **Depth and Scope.** Perform deep-dive investigation on escalated alerts, confirm incidents, determine the scope of compromise, and begin containment.
+
+#### Key Responsibilities:
+
+- **Deep-Dive Analysis:** Investigate alerts that T1 could not resolve
+    - Advanced log analysis across multiple data sources
+    - EDR telemetry review (process trees, network connections, file modifications)
+    - Forensic artifact examination (registry keys, scheduled tasks, persistence mechanisms)
+- **Scope Expansion:** Take a confirmed malicious indicator and hunt for it across the entire environment
+    - Example: "This IP contacted one host - are there 50 more affected machines?"
+    - Query SIEM for all connections to malicious IOCs
+    - Search EDR for similar behavioral patterns
+- **Incident Confirmation:** Officially declare a security incident based on evidence
+- **Containment Actions:** Take immediate steps to stop threat spread
+    - Isolate compromised hosts from the network
+    - Disable compromised user accounts
+    - Block malicious IPs/domains at the firewall
+    - Quarantine malicious files via EDR
+- **Mentorship:** Provide guidance and feedback to T1 analysts
+
+**Mindset:** **Investigation and Correlation.** You're connecting the dots to understand the full story of an attack - not just identifying one bad thing, but understanding the entire attack chain.
+
+**Real-World Example (Continuing from T1):**
+
+> T2 receives your escalation about jsmith's compromised account:
+> 
+> T2 Deep Investigation:
+> 
+> 1. Review all jsmith activity after successful login - accessed file shares, downloaded sensitive files
+> 2. Check for lateral movement - attempted RDP connections to 5 other servers
+> 3. Hunt for the attacker IP across environment - found connections to 3 other compromised accounts
+> 4. Containment: Disable all 4 accounts, isolate affected hosts, block attacker IP at perimeter
+> 5. **Decision:** Confirmed incident - Escalate to Incident Handler for coordinated response
 
 ---
 
-### Action Plan for You to Complete This Step
+### 3. SOC Tier 3 (T3) - The Expert / The Threat Hunter
 
-Don't just read this—**do this**.
+**Primary Mission:** **Expertise and Proactivity.** Handle the most complex incidents, conduct proactive threat hunting, and improve the SOC's overall capabilities.
 
-| Action Item | Description | Why It's Important |
-| :--- | :--- | :--- |
-| **1. Find Your SOC's Org Chart** | Ask your manager or a senior colleague: "Is there a document that outlines our specific T1/T2/T3 roles and escalation paths?" | Your organization might have slight variations. Knowing the exact expectations and who to escalate to is critical. |
-| **2. Study Escalation Criteria** | In your ticketing system (ServiceNow, Jira, etc.), look at past tickets. Find ones that were escalated from T1 to T2. Read the **comments and notes**. What did the T1 analyst say? What evidence did they provide? | This is real-world learning. You will see what a good (and bad) escalation looks like in your environment. |
-| **3. Practice the Handoff** | When you escalate a ticket, use a mental checklist: <br> - [ ] I have provided all relevant IOCs (IPs, Hashes, Users). <br> - [ ] I have summarized what I checked and what I found. <br> - [ ] I have clearly stated why I need T2's help. | A clear handoff makes T2 more efficient and makes you look professional. It builds trust. |
-| **4. Talk to a T2** | During a quiet period, ask a T2 analyst: "What is the one thing you wish every T1 would do when escalating a ticket?" | You will get the most valuable, direct feedback possible. It also shows initiative. |
-| **5. Self-Assess** | At the end of your shift, ask yourself: <br> - "Did I close any tickets that should have been escalated?" <br> - "Did I escalate any tickets that I could have solved myself?" <br> - "What was the most challenging alert today and why?" | This reflective practice is how you move from following steps to developing true analytical judgment. |
+#### Key Responsibilities:
+
+- **Complex Incident Response:** Lead response for major breaches
+    - Ransomware outbreaks requiring business continuity activation
+    - Advanced Persistent Threats (APTs) with sophisticated tactics
+    - Supply chain attacks affecting multiple systems
+- **Threat Hunting:** Proactively search for hidden threats that bypassed automated detection
+    - Hypothesis-driven investigations ("Are we vulnerable to X technique?")
+    - Behavioral analysis looking for anomalies
+    - Hunting based on new threat intelligence
+- **Malware Analysis:** Reverse engineer malicious software
+    - Static analysis (examining code without execution)
+    - Dynamic analysis (running malware in sandbox environments)
+    - Understanding attacker tools, techniques, and procedures
+- **Tool & Rule Development:** Create advanced detection rules
+    - Develop custom SIEM correlation rules
+    - Create YARA rules for malware detection
+    - Build automation scripts for repetitive tasks
+- **Strategic Improvement:** Identify and address SOC capability gaps
+    - Analyze metrics to find process bottlenecks
+    - Recommend new security tools or technologies
+    - Lead post-incident review sessions
+
+**Mindset:** **Innovation and Mastery.** You are no longer just reacting; you are thinking like an adversary and building defenses against future attacks before they happen.
+
+---
+
+## SOC Tier Responsibilities Summary Table
+
+|Phase|Primary T1 Role|Primary T2/T3 Role|
+|---|---|---|
+|**Preparation**|Learn tools & playbooks|Develop & improve playbooks|
+|**Detection & Analysis**|**Initial Triage & Escalation**|Deep Dive, Scope, Confirm Incident|
+|**Containment**|Supporting role (execute directed actions)|**Lead & Execute containment strategies**|
+|**Eradication**|Not typically involved|**Root cause analysis & threat removal**|
+|**Recovery**|Not typically involved|System restoration & validation|
+|**Post-Incident**|**Provide triage feedback**|Lead analysis, write reports, tune detection rules|
+
+---
+
+## Action Plan: What You Need to Do
+
+|Action Item|Description|Why It's Important|
+|---|---|---|
+|**1. Find Your SOC's Org Chart**|Ask your manager: "Is there a document that outlines our specific T1/T2/T3 roles and escalation paths?"|Your organization might have variations. Knowing exact expectations and escalation contacts is critical.|
+|**2. Study Escalation Examples**|In your ticketing system, review 10 past tickets that were escalated from T1 to T2. Read the notes and comments.|Real-world learning - see what good (and bad) escalations look like in your environment.|
+|**3. Practice the Handoff Checklist**|When escalating, use this mental checklist:<br>☐ All relevant IOCs provided (IPs, Hashes, Users)<br>☐ Summary of what I checked and found<br>☐ Clear statement of why I need T2's help|A clear handoff makes T2 more efficient and builds your professional reputation.|
+|**4. Talk to a T2 Analyst**|During a quiet period, ask: "What is the one thing you wish every T1 would do when escalating?"|Direct feedback from the person receiving your escalations - invaluable insight.|
+|**5. Daily Self-Assessment**|At shift end, ask yourself:<br>• Did I close any tickets that should have been escalated?<br>• Did I escalate any I could have solved?<br>• What was my most challenging alert and why?|Reflective practice develops analytical judgment beyond just following steps.|
+
+---
+
+> **T1 Analyst Goal:** Master the T1 role of efficient triage and clear escalation. Your accurate initial assessment and thorough documentation directly impact the speed and effectiveness of the entire incident response process.
