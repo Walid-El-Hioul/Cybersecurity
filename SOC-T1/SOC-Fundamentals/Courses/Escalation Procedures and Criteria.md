@@ -1,10 +1,56 @@
+# Table of Contents
+- [[#Escalation The Single Most Important Decision|Escalation The Single Most Important Decision]]
+- [[#Why Escalation is Critical|Why Escalation is Critical]]
+- [[#The Golden Rules of Escalation|The Golden Rules of Escalation]]
+	  - [[#Rule 1: When in Doubt, Escalate|Rule 1: When in Doubt, Escalate]]
+	  - [[#Rule 2: Follow Your Playbook's Escalation Criteria|Rule 2: Follow Your Playbook's Escalation Criteria]]
+	  - [[#Rule 3: Respect Your Time Limit|Rule 3: Respect Your Time Limit]]
+- [[#Escalation Decision Tree|Escalation Decision Tree]]
+- [[#When to Escalate: Specific Criteria|When to Escalate: Specific Criteria]]
+	  - [[#Category 1: Confirmed High-Severity Threats ALWAYS ESCALATE|Category 1: Confirmed High-Severity Threats ALWAYS ESCALATE]]
+	  - [[#Category 2: Technical Complexity Beyond T1 Scope|Category 2: Technical Complexity Beyond T1 Scope]]
+	  - [[#Category 3: Scope Expansion Required|Category 3: Scope Expansion Required]]
+	  - [[#Category 4: Policy/Authority Limitations|Category 4: Policy/Authority Limitations]]
+- [[#How to Escalate: The Perfect Handoff|How to Escalate: The Perfect Handoff]]
+	  - [[#The Escalation Note Template|The Escalation Note Template]]
+	  - [[#Real-World Escalation Example - PERFECT|Real-World Escalation Example - PERFECT]]
+- [[#Escalation Communication Protocols|Escalation Communication Protocols]]
+	  - [[#Who to Escalate To|Who to Escalate To]]
+	  - [[#Escalation SLAs Service Level Agreements|Escalation SLAs Service Level Agreements]]
+- [[#Common Escalation Mistakes to Avoid|Common Escalation Mistakes to Avoid]]
+	  - [[#Mistake 1: Escalating Without Investigation|Mistake 1: Escalating Without Investigation]]
+	  - [[#Mistake 2: Missing Critical Context|Mistake 2: Missing Critical Context]]
+	  - [[#Mistake 3: Not Following Up|Mistake 3: Not Following Up]]
+	  - [[#Mistake 4: Over-Escalating False Positives|Mistake 4: Over-Escalating False Positives]]
+- [[#What Happens After You Escalate|What Happens After You Escalate]]
+- [[#Practice Scenarios: Should You Escalate?|Practice Scenarios: Should You Escalate?]]
+	  - [[#Scenario 1: Unusual Login Time|Scenario 1: Unusual Login Time]]
+	  - [[#Scenario 2: Suspicious File Download|Scenario 2: Suspicious File Download]]
+	  - [[#Scenario 3: Multiple Failed Logins|Scenario 3: Multiple Failed Logins]]
+	  - [[#Scenario 4: Antivirus Detection|Scenario 4: Antivirus Detection]]
+	  - [[#Scenario 5: Unusual PowerShell Activity|Scenario 5: Unusual PowerShell Activity]]
+- [[#Escalation Checklist|Escalation Checklist]]
+	  - [[#Pre-Escalation Verification|Pre-Escalation Verification]]
+	  - [[#Escalation Note Quality Check|Escalation Note Quality Check]]
+	  - [[#Post-Escalation Actions|Post-Escalation Actions]]
+- [[#Escalation Metrics: How You're Measured|Escalation Metrics: How You're Measured]]
+- [[#Real-World Escalation Patterns|Real-World Escalation Patterns]]
+	  - [[#Pattern 1: "The Cascade"|Pattern 1: "The Cascade"]]
+	  - [[#Pattern 2: "The False Alarm Spiral"|Pattern 2: "The False Alarm Spiral"]]
+	  - [[#Pattern 3: "The Perfect Handoff"|Pattern 3: "The Perfect Handoff"]]
+- [[#Action Plan: Master Escalation|Action Plan: Master Escalation]]
+- [[#Common Questions About Escalation|Common Questions About Escalation]]
+- [[#Quick Reference: Escalation Decision Matrix|Quick Reference: Escalation Decision Matrix]]
+
+---
+
+## Escalation: The Single Most Important Decision
+
 Escalation is the **single most important decision** a SOC Tier 1 analyst makes. Escalate too early, and you waste T2's time on issues you could have resolved. Escalate too late (or not at all), and a minor incident becomes a major breach. This course teaches you exactly when, how, and why to escalate.
 
 ---
 
-### Why Escalation is Critical
-
-mermaid
+## Why Escalation is Critical
 
 ```mermaid
 flowchart TD
@@ -32,9 +78,9 @@ flowchart TD
 
 ---
 
-### The Golden Rules of Escalation
+## The Golden Rules of Escalation
 
-#### Rule 1: When in Doubt, Escalate
+### Rule 1: When in Doubt, Escalate
 
 **Always err on the side of escalation.** It's better to escalate an incident that turns out to be minor than to miss a critical threat because you weren't sure.
 
@@ -46,9 +92,7 @@ flowchart TD
 > 
 > **Wrong Action:** Close as false positive because you "think" it's probably okay. (This is how breaches happen)
 
----
-
-#### Rule 2: Follow Your Playbook's Escalation Criteria
+### Rule 2: Follow Your Playbook's Escalation Criteria
 
 Every alert type playbook has defined escalation triggers. **Trust the playbook** - it was built from lessons learned.
 
@@ -63,9 +107,7 @@ ESCALATION CRITERIA:
 ✗ If user only received email but took no action → DO NOT ESCALATE (close as monitored)
 ```
 
----
-
-#### Rule 3: Respect Your Time Limit
+### Rule 3: Respect Your Time Limit
 
 Most SOCs have a **15-20 minute rule** for T1 triage. If you can't make a confident decision in that timeframe, escalate.
 
@@ -77,11 +119,9 @@ Most SOCs have a **15-20 minute rule** for T1 triage. If you can't make a confid
 
 ---
 
-### Escalation Decision Tree
+## Escalation Decision Tree
 
 Use this decision tree for EVERY alert:
-
-mermaid
 
 ```mermaid
 flowchart TD
@@ -105,9 +145,9 @@ flowchart TD
 
 ---
 
-### When to Escalate: Specific Criteria
+## When to Escalate: Specific Criteria
 
-#### Category 1: Confirmed High-Severity Threats (ALWAYS ESCALATE)
+### Category 1: Confirmed High-Severity Threats (ALWAYS ESCALATE)
 
 These incidents always go to T2, no exceptions:
 
@@ -138,9 +178,7 @@ Escalation Note: "CRITICAL: Mimikatz detected on domain controller.
 Immediate T2/T3 response required for credential reset and scope assessment."
 ```
 
----
-
-#### Category 2: Technical Complexity Beyond T1 Scope
+### Category 2: Technical Complexity Beyond T1 Scope
 
 Escalate when investigation requires skills/tools beyond T1 capabilities:
 
@@ -171,9 +209,7 @@ intent at T1 level. Sample available for T2 analysis. Host not isolated
 pending T2 direction."
 ```
 
----
-
-#### Category 3: Scope Expansion Required
+### Category 3: Scope Expansion Required
 
 Escalate when you identify an indicator that needs to be searched enterprise-wide:
 
@@ -209,9 +245,7 @@ Compromised users: [list of 12 usernames]
 Malicious URL: hxxp://fake-company-login[.]com"
 ```
 
----
-
-#### Category 4: Policy/Authority Limitations
+### Category 4: Policy/Authority Limitations
 
 Escalate when resolution requires actions outside your authority:
 
@@ -243,9 +277,9 @@ requires management notification before account action."
 
 ---
 
-### How to Escalate: The Perfect Handoff
+## How to Escalate: The Perfect Handoff
 
-#### The Escalation Note Template
+### The Escalation Note Template
 
 Use this template for every escalation to ensure T2 has everything they need:
 
@@ -296,9 +330,7 @@ Escalation Time: [HH:MM UTC]
 T1 Investigation Duration: [X minutes]
 ```
 
----
-
-#### Real-World Escalation Example - PERFECT
+### Real-World Escalation Example - PERFECT
 
 ```
 ESCALATION TO T2 - CONFIRMED MALWARE WITH LATERAL MOVEMENT ATTEMPT
@@ -373,9 +405,9 @@ T1 Investigation Duration: 12 minutes
 
 ---
 
-### Escalation Communication Protocols
+## Escalation Communication Protocols
 
-#### Who to Escalate To
+### Who to Escalate To
 
 |Situation|Escalate To|When|
 |---|---|---|
@@ -399,9 +431,7 @@ T1 → Assign to T2 Team Lead + Send Slack alert to #soc-critical +
      Email SOC Manager
 ```
 
----
-
-#### Escalation SLAs (Service Level Agreements)
+### Escalation SLAs (Service Level Agreements)
 
 Know your organization's expected response times:
 
@@ -416,9 +446,9 @@ Know your organization's expected response times:
 
 ---
 
-### Common Escalation Mistakes to Avoid
+## Common Escalation Mistakes to Avoid
 
-#### Mistake 1: Escalating Without Investigation
+### Mistake 1: Escalating Without Investigation
 
 ❌ **Wrong:**
 
@@ -443,9 +473,7 @@ Actions Taken:
 
 **Why It Matters:** T1's job is to triage, not to immediately escalate every alert. Do your initial investigation first.
 
----
-
-#### Mistake 2: Missing Critical Context
+### Mistake 2: Missing Critical Context
 
 ❌ **Wrong:**
 
@@ -470,9 +498,7 @@ IOCs:
 
 **Why It Matters:** "Domain admin with malware" is exponentially more severe than "user with malware". Context changes T2's response priority.
 
----
-
-#### Mistake 3: Not Following Up
+### Mistake 3: Not Following Up
 
 ❌ **Wrong:** Escalate a P1, then go to lunch without confirming T2 acknowledged it.
 
@@ -480,9 +506,7 @@ IOCs:
 
 **Why It Matters:** Escalating isn't enough - you must ensure the handoff was successful, especially for critical incidents.
 
----
-
-#### Mistake 4: Over-Escalating False Positives
+### Mistake 4: Over-Escalating False Positives
 
 ❌ **Wrong Pattern:**
 
@@ -505,11 +529,9 @@ Result: T2 gets flooded with false positive escalations, loses trust in your jud
 
 ---
 
-### What Happens After You Escalate
+## What Happens After You Escalate
 
 Understanding T2's process helps you improve your escalations:
-
-mermaid
 
 ```mermaid
 flowchart TD
@@ -543,11 +565,9 @@ flowchart TD
 
 ---
 
-### Practice Scenarios: Should You Escalate?
+## Practice Scenarios: Should You Escalate?
 
-Test your escalation judgment with these scenarios:
-
-#### Scenario 1: Unusual Login Time
+### Scenario 1: Unusual Login Time
 
 ```
 Alert: "User Login Outside Normal Hours"
@@ -579,9 +599,7 @@ Should you escalate?
 
 </details>
 
----
-
-#### Scenario 2: Suspicious File Download
+### Scenario 2: Suspicious File Download
 
 ```
 Alert: "Executable Downloaded from Internet"
@@ -613,9 +631,7 @@ Should you escalate?
 
 </details>
 
----
-
-#### Scenario 3: Multiple Failed Logins
+### Scenario 3: Multiple Failed Logins
 
 ```
 Alert: "Brute Force Attempt Detected"
@@ -659,9 +675,7 @@ Should you escalate?
 
 </details>
 
----
-
-#### Scenario 4: Antivirus Detection
+### Scenario 4: Antivirus Detection
 
 ```
 Alert: "Malware Detected and Quarantined"
@@ -703,9 +717,7 @@ Should you escalate?
 
 </details>
 
----
-
-#### Scenario 5: Unusual PowerShell Activity
+### Scenario 5: Unusual PowerShell Activity
 
 ```
 Alert: "Suspicious PowerShell Execution"
@@ -755,8 +767,6 @@ Should you escalate?
 ---
 
 ## Escalation Checklist
-
-Use this checklist before every escalation:
 
 ### Pre-Escalation Verification
 
@@ -820,8 +830,6 @@ Understanding how your escalations are measured helps you improve:
 
 ## Real-World Escalation Patterns
 
-Learn from these common patterns:
-
 ### Pattern 1: "The Cascade"
 
 **Situation:** Single indicator snowballs into major incident
@@ -837,117 +845,7 @@ T2 Investigation: Confirms malware, discovers C2 communication
 ↓
 T2 Escalation: Lateral movement detected, 5 hosts compromised
 ↓
-T3 Response: Major incident declared, full IR team activated
+T3 Response: Major incident declared,
 ```
 
-**Lesson:** Even a "simple" phishing alert can be the tip of the iceberg. Thorough T1 investigation and fast escalation is critical.
-
----
-
-### Pattern 2: "The False Alarm Spiral"
-
-**Situation:** Over-escalating creates escalation fatigue
-
-```
-Week 1: T1 escalates 15 "suspicious" PowerShell alerts → All false positives
-Week 2: T2 starts ignoring T1's escalations
-Week 3: T1 escalates real malware → T2 delays response (thinks it's another FP)
-Week 4: Real malware spreads because of delayed response
-```
-
-**Lesson:** Over-escalation is as dangerous as under-escalation. Do your investigation before escalating.
-
----
-
-### Pattern 3: "The Perfect Handoff"
-
-**Situation:** T1 escalation enables instant T2 response
-
-```
-14:35 UTC - Alert fires
-14:38 UTC - T1 starts investigation
-14:45 UTC - T1 completes thorough triage, documents everything
-14:47 UTC - T1 escalates with complete IOCs and context
-14:50 UTC - T2 picks up ticket
-14:52 UTC - T2 begins deep investigation (no questions for T1 needed)
-15:15 UTC - T2 completes scope expansion and containment
-```
-
-**Lesson:** 10 minutes of thorough T1 documentation saves 30 minutes of T2 time.
-
----
-
-## Action Plan: Master Escalation
-
-|Action Item|Description|Why It's Important|
-|---|---|---|
-|**1. Create Your Escalation Template**|Build a reusable template with all required fields. Store it in your notes for quick copy/paste.|Ensures you never forget critical information when escalating under pressure during a P1 incident.|
-|**2. Review 15 Past Escalations**|Read 15 tickets that were escalated in the past month. 5 excellent, 5 average, 5 poor quality. Identify what made them different.|Real examples teach you what great escalations look like and common mistakes to avoid.|
-|**3. Get T2 Feedback**|Ask a T2 analyst to review your last 3 escalations and provide honest feedback. "What did I do well? What could I improve?"|Direct feedback from the person receiving your escalations is the fastest way to improve.|
-|**4. Practice Scenarios Weekly**|Every week, take one past alert and practice writing an escalation note (even if it didn't need escalation). Time yourself.|Builds muscle memory for fast, complete escalations during real incidents.|
-|**5. Track Your Metrics**|At the end of each month, calculate: How many tickets did I work? How many did I escalate? What % did T2 agree with?|Self-awareness of your patterns helps you improve before management feedback.|
-|**6. Shadow T2 Investigations**|After you escalate, ask to observe the T2 investigation (when possible). See what they do with your information.|Understanding T2's workflow shows you what information they value most.|
-|**7. Build an IOC Collection Habit**|For every investigation (escalated or not), practice documenting all IOCs in a structured format.|Makes this automatic so you don't forget IOCs during high-pressure escalations.|
-
----
-
-## Common Questions About Escalation
-
-### Q1: "What if I'm not sure if something is malicious?"
-
-**A:** If you've spent 15 minutes investigating and still can't determine if it's malicious, escalate. Include in your note: "Unable to determine malicious intent at T1 level. Suspicious indicators include: [list them]. Need T2 analysis."
-
-### Q2: "What if T2 disagrees with my escalation?"
-
-**A:** This is normal and part of learning. Ask for feedback: "Can you help me understand what I should have checked to determine this was a false positive?" Most T2 analysts are happy to mentor.
-
-### Q3: "Should I escalate if the threat is already contained?"
-
-**A:** Yes, if it meets escalation criteria. Even if you've isolated a host and disabled an account, T2 needs to do scope expansion (hunt for the IOC elsewhere) and root cause analysis (how did it happen?).
-
-### Q4: "What if multiple alerts are related?"
-
-**A:** Create one escalation ticket that references all related alerts. Link them together and explain the relationship: "Three alerts (Ticket #101, #102, #103) appear to be part of the same attack chain. Escalating as single incident."
-
-### Q5: "Can I escalate to T3 directly?"
-
-**A:** No (in most SOCs). The escalation path is T1 → T2 → T3. Exception: If T2 is completely unavailable during an active P1 incident and you've tried all contact methods, then escalate to T3 and explain the situation.
-
-### Q6: "What if I escalated something that turned out to be false positive?"
-
-**A:** This will happen occasionally and it's okay. What matters is:
-
-1. Did you do proper investigation before escalating?
-2. Did you document your reasoning?
-3. Are you learning from T2's feedback?
-
-If yes to all three, you're doing fine. An occasional false positive escalation is better than missing a real threat.
-
-### Q7: "How do I escalate when I'm unsure which priority to assign?"
-
-**A:** When in doubt between two priorities, choose the higher one and explain your reasoning: "Assigning P1 due to domain admin account involvement, but may be P2 if activity is determined to be legitimate admin work. Need T2 assessment."
-
----
-
-> **T1 Analyst Goal:** Master the art of escalation by understanding WHEN (criteria), HOW (documentation), and WHY (impact) to escalate. Your escalation decisions are the gateway between noise and real threats - get this right and you become an invaluable asset to your SOC team.
-
----
-
-## Quick Reference: Escalation Decision Matrix
-
-Print this and keep it at your desk:
-
-|If You See...|Escalate?|Priority|Immediate Actions|
-|---|---|---|---|
-|Malware with C2 communication|✅ YES|P1|Isolate host, disable account, gather IOCs|
-|Ransomware indicators|✅ YES|P1|DO NOT isolate yet, alert T2 via phone/Slack|
-|Credential dumping tools|✅ YES|P1|Isolate host, gather IOCs, note affected accounts|
-|Phishing email, user clicked, entered creds|✅ YES|P2|Disable account, check for unauthorized access|
-|Suspicious file, can't determine intent after 15 min|✅ YES|P2|Document findings, preserve file sample|
-|Multiple related alerts across systems|✅ YES|P2|Link alerts, note timeline, identify pattern|
-|Brute force with successful login|✅ YES|P2|Disable account, check for unauthorized activity|
-|Executive/high-value user affected|✅ YES|P2|Follow standard process, notify management|
-|Malware quarantined BEFORE execution|❌ NO|-|Verify quarantine, full scan, educate user, close ticket|
-|After-hours login from usual location|❌ NO|-|Verify legitimacy, document, close ticket|
-|IT admin downloading legitimate tools|❌ NO|-|Verify tool legitimacy and user authority, close ticket|
-|Alert on known false positive pattern|❌ NO|-|Document as FP, recommend rule tuning, close ticket|
+[[#Table of Contents|↑ Back to Top]]

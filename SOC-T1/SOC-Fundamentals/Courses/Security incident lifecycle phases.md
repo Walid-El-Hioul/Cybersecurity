@@ -1,18 +1,36 @@
+# Table of Contents
+- [[#The Security Incident Lifecycle|The Security Incident Lifecycle]]
+- [[#The Three Primary Models|The Three Primary Models]]
+- [[#Model 1: NIST 4-Phase Model The Industry Standard|Model 1: NIST 4-Phase Model The Industry Standard]]
+	  - [[#Phase 1: Preparation|Phase 1: Preparation]]
+	  - [[#Phase 2: Detection & Analysis|Phase 2: Detection & Analysis]]
+	  - [[#Phase 3: Containment, Eradication & Recovery|Phase 3: Containment, Eradication & Recovery]]
+	  - [[#Phase 4: Post-Incident Activity|Phase 4: Post-Incident Activity]]
+- [[#Model 2: 5-Phase Model The Operational Standard|Model 2: 5-Phase Model The Operational Standard]]
+	  - [[#Phase 3: Containment Split from NIST Phase 3|Phase 3: Containment Split from NIST Phase 3]]
+	  - [[#Phase 4: Eradication & Recovery Split from NIST Phase 3|Phase 4: Eradication & Recovery Split from NIST Phase 3]]
+- [[#Model 3: 6-Phase Model High-Granularity Approach|Model 3: 6-Phase Model High-Granularity Approach]]
+- [[#Model Comparison Table|Model Comparison Table]]
+- [[#Why This Matters for Your T1 Career|Why This Matters for Your T1 Career]]
+- [[#Action Plan: Apply This Knowledge|Action Plan: Apply This Knowledge]]
+
+---
+
+## The Security Incident Lifecycle
+
 The Security Incident Lifecycle is a structured process that defines the stages of managing a security incident from initial preparation through post-incident review. Understanding this lifecycle helps you appreciate where your T1 role fits and what happens after you escalate an incident.
 
 ---
 
-### The Three Primary Models
+## The Three Primary Models
 
 Organizations use different models, but all share the same core concepts. As a T1 analyst, you'll primarily work in the **Detection & Analysis** phase regardless of which model your organization uses.
 
 ---
 
-### Model 1: NIST 4-Phase Model (The Industry Standard)
+## Model 1: NIST 4-Phase Model (The Industry Standard)
 
 **The National Institute of Standards and Technology (NIST) SP 800-61 framework** is the authoritative standard used for compliance and strategic planning.
-
-mermaid
 
 ```mermaid
 flowchart TD
@@ -26,7 +44,7 @@ flowchart TD
     style D fill:#95e1d3
 ```
 
-#### Phase 1: Preparation
+### Phase 1: Preparation
 
 **What Happens:**
 
@@ -39,9 +57,7 @@ flowchart TD
 
 **Real Example:** Your SOC runs a monthly tabletop exercise simulating a ransomware attack. You practice your triage steps and escalation procedures before a real incident occurs.
 
----
-
-#### Phase 2: Detection & Analysis
+### Phase 2: Detection & Analysis
 
 **What Happens:**
 
@@ -55,9 +71,7 @@ flowchart TD
 
 **Real Example:** SIEM alert fires for "Suspicious PowerShell Execution". You check the command line, verify it's not a legitimate admin script, identify the user and host affected, and escalate to T2 with your findings in 15 minutes instead of 2 hours.
 
----
-
-#### Phase 3: Containment, Eradication & Recovery
+### Phase 3: Containment, Eradication & Recovery
 
 **What Happens:**
 
@@ -69,9 +83,7 @@ flowchart TD
 
 **Real Example:** T2 asks you to isolate three specific hosts via EDR while they continue investigating the full scope. You execute the isolation, document the action in tickets, and confirm completion.
 
----
-
-#### Phase 4: Post-Incident Activity
+### Phase 4: Post-Incident Activity
 
 **What Happens:**
 
@@ -86,11 +98,9 @@ flowchart TD
 
 ---
 
-### Model 2: 5-Phase Model (The Operational Standard)
+## Model 2: 5-Phase Model (The Operational Standard)
 
 **Most companies use this practical 5-phase model** in daily SOC operations because it provides clearer operational separation between containment and eradication/recovery.
-
-mermaid
 
 ```mermaid
 flowchart TD
@@ -106,7 +116,7 @@ flowchart TD
 
 **Key Difference from NIST:** Phase 3 (Containment) is separated from Phase 4 (Eradication & Recovery), making it clearer when to focus on stopping the attack versus cleaning up and restoring.
 
-#### Phase 3: Containment (Split from NIST Phase 3)
+### Phase 3: Containment (Split from NIST Phase 3)
 
 **Short-term Containment:** Immediate actions to prevent attack spread
 
@@ -124,9 +134,7 @@ flowchart TD
 
 **Real Example:** Ransomware detected on one workstation. **Short-term:** Immediately isolate the host to prevent spread to file servers. **Long-term:** Segment the entire department's network while investigating other potentially infected machines.
 
----
-
-#### Phase 4: Eradication & Recovery (Split from NIST Phase 3)
+### Phase 4: Eradication & Recovery (Split from NIST Phase 3)
 
 **Eradication:** Removing the root cause
 
@@ -146,11 +154,9 @@ flowchart TD
 
 ---
 
-### Model 3: 6-Phase Model (High-Granularity Approach)
+## Model 3: 6-Phase Model (High-Granularity Approach)
 
 **Used by mature organizations** like Google and IBM for maximum process clarity and auditability.
-
-mermaid
 
 ```mermaid
 flowchart TD
@@ -216,3 +222,5 @@ When you escalate to T2, you're handing off from Detection/Analysis to Containme
 ---
 
 > **T1 Analyst Goal:** While you primarily work in the Detection & Analysis phase, understanding the full incident lifecycle helps you appreciate the impact of your work and communicate effectively with higher-tier analysts who handle later phases.
+
+[[#Table of Contents|↑ Back to Top]]

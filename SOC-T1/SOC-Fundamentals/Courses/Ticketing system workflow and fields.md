@@ -1,8 +1,26 @@
+# Table of Contents
+- [[#The Ticketing System|The Ticketing System]]
+- [[#Why the Ticketing System is Critical for T1|Why the Ticketing System is Critical for T1]]
+- [[#The Complete Ticketing Workflow|The Complete Ticketing Workflow]]
+- [[#Step 1: Alert Generation & Ticket Creation|Step 1: Alert Generation & Ticket Creation]]
+- [[#Step 2: Acknowledgment & Ownership|Step 2: Acknowledgment & Ownership]]
+- [[#Step 3: Triage & Prioritization YOUR CRITICAL PHASE|Step 3: Triage & Prioritization YOUR CRITICAL PHASE]]
+	  - [[#3A: Alert Validation|3A: Alert Validation]]
+	  - [[#3B: Risk Assessment & Prioritization|3B: Risk Assessment & Prioritization]]
+- [[#Step 4: Decision & Action|Step 4: Decision & Action]]
+  - [[#Path A: False Positive - Close the Ticket|Path A: False Positive - Close the Ticket]]
+  - [[#Path B: True Positive - Simple Resolution|Path B: True Positive - Simple Resolution]]
+  - [[#Path C: True Positive - Escalation Required|Path C: True Positive - Escalation Required]]
+
+---
+
+## The Ticketing System
+
 The Ticketing System (also called Case Management System) is not just a task tracker - it's the **official system of record** for all security incidents and your most important tool for accountability, workflow management, and communication with other SOC tiers.
 
 ---
 
-### Why the Ticketing System is Critical for T1
+## Why the Ticketing System is Critical for T1
 
 Every action you take must be documented in the ticket. This system:
 
@@ -13,9 +31,7 @@ Every action you take must be documented in the ticket. This system:
 
 ---
 
-### The Complete Ticketing Workflow
-
-mermaid
+## The Complete Ticketing Workflow
 
 ```mermaid
 flowchart TD
@@ -34,7 +50,7 @@ flowchart TD
 
 ---
 
-### Step 1: Alert Generation & Ticket Creation
+## Step 1: Alert Generation & Ticket Creation
 
 **What Happens:**
 
@@ -55,7 +71,7 @@ flowchart TD
 
 ---
 
-### Step 2: Acknowledgment & Ownership
+## Step 2: Acknowledgment & Ownership
 
 **What Happens:**
 
@@ -75,11 +91,11 @@ flowchart TD
 
 ---
 
-### Step 3: Triage & Prioritization (YOUR CRITICAL PHASE)
+## Step 3: Triage & Prioritization (YOUR CRITICAL PHASE)
 
 **What Happens:** This is where you perform your core T1 function - quickly assess the alert to determine if it's real, what the risk is, and what action to take.
 
-#### 3A: Alert Validation
+### 3A: Alert Validation
 
 **Your Tasks:**
 
@@ -104,7 +120,7 @@ Your Triage Steps:
 Decision: TRUE POSITIVE - Phishing campaign affecting 50 users
 ```
 
-#### 3B: Risk Assessment & Prioritization
+### 3B: Risk Assessment & Prioritization
 
 **Your Tasks:** Assign appropriate **Priority/Severity** based on:
 
@@ -133,11 +149,11 @@ Decision: TRUE POSITIVE - Phishing campaign affecting 50 users
 
 ---
 
-### Step 4: Decision & Action
+## Step 4: Decision & Action
 
 Based on your triage, you take one of three paths:
 
-#### Path A: False Positive - Close the Ticket
+### Path A: False Positive - Close the Ticket
 
 **When to Use:**
 
@@ -162,64 +178,7 @@ Initial Finding: 500GB uploaded to IP 203.0.113.50
 Investigation: 
 - IP 203.0.113.50 = Company's cloud backup provider (verified in asset database)
 - Transfer time matches scheduled backup window
-- User account = SYSTEM (automated backup service)
-Conclusion: FALSE POSITIVE - Legitimate backup job
-Action: Close ticket, recommend SIEM rule update to whitelist backup IPs
+- User account =
 ```
 
----
-
-#### Path B: True Positive - Simple Resolution
-
-**When to Use:**
-
-- Confirmed security issue within your authority to resolve
-- Clear remediation steps in the playbook
-- No escalation needed
-
-**Critical Fields You MUST Complete:**
-
-|Field|What to Document|Example|
-|---|---|---|
-|**Actions Taken**|Step-by-step what you did|"1. Verified malicious file hash via VT 2. Quarantined file via EDR 3. Ran full system scan - no additional threats 4. Confirmed user did not execute file"|
-|**IOCs Found**|All indicators|File Hash: a1b2c3..., File Name: invoice.exe, Source: phishing email|
-|**Resolution**|How threat was neutralized|"Malware quarantined before execution. No compromise occurred."|
-|**Status**|"Resolved - True Positive"||
-
-**Real Example:**
-
-```
-Alert: "Malware Detected on Endpoint"
-Investigation:
-- File: invoice.pdf.exe (classic double extension trick)
-- Hash: Flagged by 62/70 AV engines as Emotet malware
-- Status: File quarantined automatically by EDR before execution
-- User: Received via phishing email, did NOT click/open
-Actions Taken:
-1. Verified quarantine successful
-2. Deleted phishing email from user mailbox
-3. Ran full EDR scan - system clean
-4. Sent security awareness reminder to user
-Conclusion: TRUE POSITIVE resolved at T1 level - no escalation needed
-```
-
----
-
-#### Path C: True Positive - Escalation Required
-
-**When to Use:**
-
-- Confirmed security incident beyond T1 scope
-- Requires T2 deep investigation or containment
-- Active attack requiring immediate T2 response
-- You're uncertain if it's malicious (when in doubt, escalate)
-
-**THE MOST IMPORTANT SKILL FOR T1: THE ESCALATION HANDOFF**
-
-This is where most T1 analysts succeed or fail. A good escalation makes T2 fast and effective. A poor escalation wastes everyone's time.
-
-**Critical Fields for Escalation:**
-
-|Field|What to Include|Good Example|Bad Example|
-|---|---|---|---|
-|**Escalation Notes**|Concise summary of findings and why T2 is needed|"Confirmed C2 beacon to known APT infrastructure. Host isolated. Need T2 for scope expansion - check if other hosts contacted 203.0.113.45||
+[[#Table of Contents|↑ Back to Top]]

@@ -1,12 +1,31 @@
+# Table of Contents
+- [[#Introduction|Introduction]]
+- [[#The SOC Alert Handling Workflow|The SOC Alert Handling Workflow]]
+- [[#1 SOC Tier 1 T1 - The Front Line  The Triage Engine|1 SOC Tier 1 T1 - The Front Line  The Triage Engine]]
+	  - [[#Key Responsibilities|Key Responsibilities]]
+	  - [[#Mindset|Mindset]]
+	  - [[#Real-World Example|Real-World Example]]
+- [[#2 SOC Tier 2 T2 - The Incident Responder  The Hunter|2 SOC Tier 2 T2 - The Incident Responder  The Hunter]]
+	  - [[#Key Responsibilities|Key Responsibilities]]
+	  - [[#Mindset|Mindset]]
+	  - [[#Real-World Example Continuing from T1|Real-World Example Continuing from T1]]
+- [[#3 SOC Tier 3 T3 - The Expert  The Threat Hunter|3 SOC Tier 3 T3 - The Expert  The Threat Hunter]]
+	  - [[#Key Responsibilities|Key Responsibilities]]
+	  - [[#Mindset|Mindset]]
+- [[#SOC Tier Responsibilities Summary Table|SOC Tier Responsibilities Summary Table]]
+- [[#Action Plan: What You Need to Do|Action Plan: What You Need to Do]]
+
+---
+
+## Introduction
+
 Understanding the distinct roles, responsibilities, and skill sets of each SOC tier so you can perform your own job (T1) effectively, know exactly when and why to escalate an alert, and see a clear path for your career growth.
 
 ---
 
-### The SOC Alert Handling Workflow
+## The SOC Alert Handling Workflow
 
 Before diving into tier responsibilities, here's the complete workflow that governs every alert:
-
-mermaid
 
 ```mermaid
 flowchart TD
@@ -24,11 +43,11 @@ flowchart TD
 
 ---
 
-### 1. SOC Tier 1 (T1) - The Front Line / The Triage Engine
+## 1. SOC Tier 1 (T1) - The Front Line / The Triage Engine
 
 **Primary Mission:** **Volume and Velocity.** Monitor, triage, and perform initial investigation on a high volume of security alerts.
 
-#### Key Responsibilities:
+### Key Responsibilities:
 
 - **Alert Acknowledgment:** Be the first set of eyes on alerts from the SIEM, EDR, IDS, and other tools.
 - **Initial Triage:** Quickly determine if an alert is a **false positive**, a **true positive**, or requires more information.
@@ -43,9 +62,11 @@ flowchart TD
     - If False Positive: Document reasoning clearly and close the ticket
     - If True Positive or Inconclusive: **Escalate to Tier 2** with clear, concise notes
 
-**Mindset:** **Efficiency and Process.** Your goal is to clear the queue of noise so T2 can focus on real threats. You are the filter that protects the organization from alert fatigue.
+### Mindset:
 
-**Real-World Example:**
+**Efficiency and Process.** Your goal is to clear the queue of noise so T2 can focus on real threats. You are the filter that protects the organization from alert fatigue.
+
+### Real-World Example:
 
 > You receive a SIEM alert: "Multiple Failed Login Attempts - User: jsmith"
 > 
@@ -59,11 +80,11 @@ flowchart TD
 
 ---
 
-### 2. SOC Tier 2 (T2) - The Incident Responder / The Hunter
+## 2. SOC Tier 2 (T2) - The Incident Responder / The Hunter
 
 **Primary Mission:** **Depth and Scope.** Perform deep-dive investigation on escalated alerts, confirm incidents, determine the scope of compromise, and begin containment.
 
-#### Key Responsibilities:
+### Key Responsibilities:
 
 - **Deep-Dive Analysis:** Investigate alerts that T1 could not resolve
     - Advanced log analysis across multiple data sources
@@ -81,9 +102,11 @@ flowchart TD
     - Quarantine malicious files via EDR
 - **Mentorship:** Provide guidance and feedback to T1 analysts
 
-**Mindset:** **Investigation and Correlation.** You're connecting the dots to understand the full story of an attack - not just identifying one bad thing, but understanding the entire attack chain.
+### Mindset:
 
-**Real-World Example (Continuing from T1):**
+**Investigation and Correlation.** You're connecting the dots to understand the full story of an attack - not just identifying one bad thing, but understanding the entire attack chain.
+
+### Real-World Example (Continuing from T1):
 
 > T2 receives your escalation about jsmith's compromised account:
 > 
@@ -97,11 +120,11 @@ flowchart TD
 
 ---
 
-### 3. SOC Tier 3 (T3) - The Expert / The Threat Hunter
+## 3. SOC Tier 3 (T3) - The Expert / The Threat Hunter
 
 **Primary Mission:** **Expertise and Proactivity.** Handle the most complex incidents, conduct proactive threat hunting, and improve the SOC's overall capabilities.
 
-#### Key Responsibilities:
+### Key Responsibilities:
 
 - **Complex Incident Response:** Lead response for major breaches
     - Ransomware outbreaks requiring business continuity activation
@@ -124,7 +147,9 @@ flowchart TD
     - Recommend new security tools or technologies
     - Lead post-incident review sessions
 
-**Mindset:** **Innovation and Mastery.** You are no longer just reacting; you are thinking like an adversary and building defenses against future attacks before they happen.
+### Mindset:
+
+**Innovation and Mastery.** You are no longer just reacting; you are thinking like an adversary and building defenses against future attacks before they happen.
 
 ---
 
@@ -154,3 +179,5 @@ flowchart TD
 ---
 
 > **T1 Analyst Goal:** Master the T1 role of efficient triage and clear escalation. Your accurate initial assessment and thorough documentation directly impact the speed and effectiveness of the entire incident response process.
+
+[[#Table of Contents|↑ Back to Top]]
